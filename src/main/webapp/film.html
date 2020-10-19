@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>添加影片</title>
+    <!--=====================CSS_Link===========================-->
+    <link rel="stylesheet" href="plugins/uploadify/uploadify.css" type="text/css">
+    <script type="text/javascript" src="plugins/uploadify/jquery.uploadify.min.js"></script>
+    <!--BootStrap 框架-->
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap4.0.0/css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="plugins/bootstrap4.0.0/css/bootstrap-reboot.css">
+    <style>
+        a {
+            text-decoration: none;
+            color: #444;
+        }
+
+        .input {
+            width: 200px;
+            height: 30px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: rgba(195, 221, 236, 0.14);
+            line-height: 30px;
+            outline: none;
+            float: left;
+            margin-right: 5px;
+            overflow: hidden;
+            padding: 5px;
+        }
+
+        .contentType {
+            width: 50%;
+            min-height: 100px;
+        }
+
+        .left-con {
+            width: 15%;
+            height: auto;
+            overflow: hidden;
+            float: left;
+            text-align: left;
+            line-height: 35px;
+            font-size: 14px;
+            font-family: '微软雅黑';
+            padding: 0.8%;
+        }
+
+        .add-movies {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            float: left;
+            text-align: left;
+            line-height: 35px;
+            font-size: 14px;
+            font-family: '微软雅黑';
+            padding: 0.8%;
+        }
+
+        .right-con {
+            width: 85%;
+            height: auto;
+            overflow: hidden;
+            float: right;
+            padding: 1%;
+            font-size: 14px;
+            font-family: '微软雅黑';
+        }
+
+        .film-info {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .film-info li {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-bottom: 1px solid #efefef;
+            list-style: none;
+        }
+
+        .fixSelect {
+            width: 212px;
+            height: 31px;
+            font-size: 14px;
+            font-family: '微软雅黑';
+            padding: 0px;
+        }
+
+
+        .title {
+            background: #efefef;
+        }
+
+        .longInput {
+            width: 50%;
+        }
+
+        .alert-box {
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #444;
+            margin-right: 10px;
+            border: 1px solid #F3B99E;
+            background: #F3D8D6;
+        }
+
+        .edit, .label-input {
+            display: none;
+        }
+
+        .show {
+            padding: 4px 8px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            color: #444;
+            margin-right: 10px;
+            display: inline-block;
+            font-size: 14px;
+            font-family: '微软雅黑';
+        }
+
+        .label:hover .edit {
+            display: inline-block;
+        }
+
+        .zi_yuan_list {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .zi_yuan_list li {
+            list-style: none;
+            height: auto;
+            width: 18%;
+            float: left;
+            font-size: 12px;
+            border: none;
+            padding: 1%;
+            overflow: hidden;
+            font-family: '微软雅黑';
+            text-align: center;
+
+        }
+
+        .zi_yuan_list li .show {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 0px;
+        }
+
+        .del {
+            color: #686868;
+            padding: 5px;
+            border: 1px #5B5B5B solid;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .file-pre img, .update-pre img {
+            max-width: 800px;
+            vertical-align: middle;
+            margin-right: 5px;
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 160px;
+            border: 1px solid #dddddd;
+        }
+
+        /*box框架*/
+        .box {
+            width: 1190px;
+            height: auto;
+            overflow: hidden;
+            margin: 0px auto;
+        }
+
+        .box-left {
+            width: 290px;
+            height: auto;
+            float: left;
+            overflow: hidden;
+        }
+
+        .box-right {
+            width: 900px;
+            height: auto;
+            float: right;
+            overflow: hidden;
+        }
+
+        /*box框架*/
+        /*导航*/
+        .nav-title {
+            width: 100%;
+            height: 30px;
+            overflow: hidden;
+            line-height: 30px;
+            font-size: 12px;
+            font-family: '微软雅黑';
+            cursor: pointer;
+
+        }
+
+        .nav1-ul {
+            width: 60%;
+            height: auto;
+            overflow: hidden;
+            margin: 0px auto;
+        }
+
+        .nav1-li {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .nav2-ul {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .nav2-li {
+            width: 100%;
+            height: 30px;
+            overflow: hidden;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        /*导航*/
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div>
+            <div style="width:100%; height: auto;overflow:hidden;margin: 0px auto;">
+                <ul class="film-info">
+                    <li class="title">
+                        <div class="add-movies">添加影片</div>
+                    </li>
+                    <li>
+                        <div class="left-con">片名:</div>
+                        <div class="right-con">
+                            <div class="update">
+                                <div class="label-input">
+                                    <input class="input update-input" placeholder="请填写影片名称" autocomplete="off"
+                                           el="div" name="name"/>
+                                </div>
+                            </div>
+                            <input class="input addFilmInput" id="name" placeholder="请填写影片名称" autocomplete="off"/>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">海报:</div>
+                        <div class="right-con">
+                            <div class="update">
+                                <input id="file_upload" name="file_upload" type="file">
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">上映年代:</div>
+                        <div class="right-con">
+                            <div class="update">
+                                <div class="label-input">
+                                    <select class="input fixSelect update-input" el="select" name="onDecade">
+                                        <option value="name">name</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <select id="onDecade" class="input fixSelect">
+                                <option value="name">name</option>
+                            </select><span style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">状态:</div>
+                        <div class="right-con">
+                            <input class="input addFilmInput" placeholder="全集/更新第几集" autocomplete="off"
+                                   id="status"/>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">分辨率:</div>
+                        <div class="right-con">
+                            <div class="update">
+                                <div class="label-input">
+                                    <select name="resolution" class="input fixSelect update-input" el="select">
+                                        <option value="1080">1080p</option>
+                                        <option value="720">720p</option>
+                                        <option value="480">480p</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <select id="resolution" class="input fixSelect">
+                                <option value="1080">1080p</option>
+                                <option value="720">720p</option>
+                                <option value="480">480p</option>
+                            </select>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">类型:</div>
+                        <div class="right-con">
+                            <div class="update">
+
+                                <div class="label-input">
+                                    <select class="cataLog_id_subClass input fixSelect">
+                                        <option value="id">name</option>
+                                    </select>&nbsp;
+                                    <select class="subClass_id input fixSelect">
+                                        <option value="id">name</option>
+                                    </select>&nbsp;
+
+                                    <select name="typeName"
+                                            class="type_id input fixSelect update-input"
+                                            el="select">
+                                        <option value="id">name</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <select class="cataLog_id_subClass input fixSelect">
+                                <option value="">name</option>
+                            </select>&nbsp;
+                            <select class="subClass_id input fixSelect"></select>&nbsp;
+                            <select class="type_id input fixSelect" id="type_id"></select>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">演员:</div>
+                        <div class="right-con">
+                            <div class="label-input">
+                                <input class="input  update-input" placeholder="请填写演员名称，多个演员请用逗号隔开"
+                                       autocomplete="off" el="div"
+                                       name="actor" value=""/>
+                            </div>
+                            <input class="input  addFilmInput" placeholder="请填写演员名称，多个演员请用逗号隔开" autocomplete="off"
+                                   id="actor"/>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">地区:</div>
+                        <div class="right-con">
+                            <div class="update">
+                                <div class="label-input">
+                                    <select name="locName" class="input fixSelect update-input"
+                                            el="select">
+                                        <option value="id">name</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <select id="locName" class="input fixSelect">
+                                <option value="id">name</option>
+                            </select>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left-con">剧情:</div>
+                        <div class="right-con">
+                            <textarea class="input contentType addFilmInput" placeholder="请简短填写剧情介绍"
+                                      autocomplete="off" id="plot"></textarea>
+                            <span style="color:red;">*</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
