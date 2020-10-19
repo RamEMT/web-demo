@@ -19,9 +19,11 @@ public class IndexServiceImpl implements IndexService {
     public IndexData getIndexData() {
         List<TCateLog> cateLogs = cateLogDao.selectCateList();
         List<TFilm> films = filmDao.selectMovies();
-        List<TFilm> topMovies = filmDao.selectTopMovies();
+        List<TFilm> topMovies = filmDao.selectTop("电影");
         List<TFilm> tvPlays = filmDao.selectTvPlays();
+        List<TFilm> topPlays = filmDao.selectTop("电视剧");
         List<TFilm> animation = filmDao.selectAnimation();
-        return new IndexData(cateLogs,films,topMovies,tvPlays,animation);
+        List<TFilm> topAnimation = filmDao.selectTop("动漫");
+        return new IndexData(cateLogs,films,topMovies,tvPlays,topPlays,animation,topAnimation);
     }
 }

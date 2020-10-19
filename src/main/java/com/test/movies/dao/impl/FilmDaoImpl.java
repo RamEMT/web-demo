@@ -141,7 +141,7 @@ public class FilmDaoImpl implements FilmDao {
     }
 
     @Override
-    public List<TFilm> selectTopMovies() {
+    public List<TFilm> selectTop(String typeName) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rSet = null;
@@ -149,9 +149,10 @@ public class FilmDaoImpl implements FilmDao {
         try {
             conn = DbManager.getInstance().getConn();
             String sql = "select f.id,f.name,f.image,f.update_time from " +
-                    "(select * from t_film where cate_log_name = '电影') f inner join " +
-                    "(select film_id,score from t_raty) r on f.id = r.film_id order by r.score desc limit 10";
+                    "(select * from t_film where cate_log_name = ?) f inner join " +
+                    "(select film_id,score from t_raty) r on f.id = r.film_id order by r.score desc limit 13";
             ps = conn.prepareStatement(sql);
+            ps.setString(1,typeName);
             rSet = ps.executeQuery();
             while (rSet.next()){
                 String id = rSet.getString(1);

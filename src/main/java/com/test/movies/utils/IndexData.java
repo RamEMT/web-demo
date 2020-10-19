@@ -10,17 +10,21 @@ public class IndexData {
     private List<TFilm> films;
     private List<TFilm> topMovies;
     private List<TFilm> tvPlays;
+    private List<TFilm> topPlays;
     private List<TFilm> animation;
+    private List<TFilm> topAnimation;
 
     public IndexData() {
     }
 
-    public IndexData(List<TCateLog> cateLogs, List<TFilm> films, List<TFilm> topMovies, List<TFilm> tvPlays, List<TFilm> animation) {
+    public IndexData(List<TCateLog> cateLogs, List<TFilm> films, List<TFilm> topMovies, List<TFilm> tvPlays, List<TFilm> topPlays, List<TFilm> animation, List<TFilm> topAnimation) {
         this.cateLogs = cateLogs;
         this.films = films;
         this.topMovies = topMovies;
         this.tvPlays = tvPlays;
+        this.topPlays = topPlays;
         this.animation = animation;
+        this.topAnimation = topAnimation;
     }
 
     public List<TCateLog> getCateLogs() {
@@ -55,11 +59,27 @@ public class IndexData {
         this.tvPlays = tvPlays;
     }
 
+    public List<TFilm> getTopPlays() {
+        return topPlays;
+    }
+
+    public void setTopPlays(List<TFilm> topPlays) {
+        this.topPlays = topPlays;
+    }
+
     public List<TFilm> getAnimation() {
         return animation;
     }
 
     public void setAnimation(List<TFilm> animation) {
         this.animation = animation;
+    }
+
+    public List<TFilm> getTopAnimation() {
+        return topAnimation;
+    }
+
+    public void setTopAnimation(List<TFilm> topAnimation) {
+        this.topAnimation = topAnimation;
     }
 }

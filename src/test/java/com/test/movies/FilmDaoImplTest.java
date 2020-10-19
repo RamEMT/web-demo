@@ -14,8 +14,6 @@ public class FilmDaoImplTest {
 
         List<TFilm> tvPlays = filmDao.selectTvPlays();
 
-        List<TFilm> tFilms = filmDao.selectTopMovies();
-
-        System.out.println(tFilms);
+        System.out.println(tvPlays);
     }
 }

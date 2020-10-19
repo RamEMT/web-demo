@@ -14,5 +14,5 @@ public interface FilmDao {
 
     TFilm selectFilmById(String id);
 
-    List<TFilm> selectTopMovies();
+    List<TFilm> selectTop(String typeName);
 }

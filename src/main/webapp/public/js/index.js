@@ -3,8 +3,6 @@ const BASE_IMG_URL = "http://119.23.190.71:8089/im/"
 
 let INDEX_URL = BASE_URL + "/index"
 
-
-
 $(function () {
     $.get(INDEX_URL, function (result) {
         if (result.status === 200) {
@@ -12,14 +10,14 @@ $(function () {
             showCateLogData(result.data.cateLogs)
             showRecommendMovies(result.data.films)
             showRecommendTvPlays(result.data.tvPlays)
-            showRecommendAnime(result.data.anime)
+            showRecommendAnime(result.data.animation)
             showTopMovies(result.data.topMovies)
-
+            showTopPlays(result.data.topPlays)
+            showTopAnimation(result.data.topAnimation)
         } else {
             alert("系统繁忙!请稍后再试!!!")
         }
     });
-
 
     function showCateLogData(cateLogs) {
          // <li class="nav-item">
@@ -140,22 +138,94 @@ $(function () {
     //     </div>
     // </li>
     function showTopMovies(topMovies) {
-        let index = 1;
+        let index = 0;
         for (const topMovie of topMovies) {
             $("#topMovies").append(
                 $("<li>").append(
                     $('<span class="ph1">').text(++index)
                 ).append(
                     $("<a>").attr("href","detail.html?film_id="+topMovie.id)
-                        .text(topMovie.name).append(
+                        .text(topMovie.name.substr(0,10)).append(
                         $("<span>").css("float","right").css("margin-right","10px")
                             .text(topMovie.updateTime.substring(5,10))
                     )
                 ).append(
                     $('<div class="tips">').append(
                         $('<div class="tipscont">').append(
-                            $('<img style="border:1px solid #ddd;padding: 4px;background: white;width=200px;height=288px">')
+                            $('<img style="border:1px solid #ddd;padding: 4px;background: white;width: 200px;height: 288px">')
                                 .attr("href",BASE_IMG_URL+topMovie.image)
+                        )
+                    )
+                )
+            )
+        }
+    }
+
+    // <li class="float-left">
+    //     <a href="xl/detail.html?film_id=">
+    //         <div class="t_img" title="${li.name}">
+    //             <img class="lazy rounded img-fluids"
+    //                  data-original=""/>
+    //         </div>
+    //     </a>
+    //     <div class="t_info">
+    //         <p style="color:#00AFE4;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+    //             电影名称
+    //         </p>
+    //         <p>typeName-li.onDecade</p>
+    //     </div>
+    // </li>
+    function showTopPlays(topPlays) {
+        let index = 1;
+        for (const topPlay of topPlays) {
+            $("#topPlays").append(
+                $("<li>").append(
+                    $('<span class="ph1">').text(index++)
+                ).append(
+                    $("<a>").attr("href","detail.html?film_id="+topPlay.id)
+                        .text(topPlay.name.substr(0,10)).append(
+                        $("<span>").css("float","right").css("margin-right","10px")
+                            .text(topPlay.updateTime.substring(5,10))
+                    )
+                ).append(
+                    $('<div class="tips">').append(
+                        $('<div class="tipscont">').append(
+                            $('<img style="border: 1px solid #ddd;padding: 4px;background: white;width: 200px;height: 288px">')
+                                .attr("href",BASE_IMG_URL+topPlay.image)
+                        )
+                    )
+                )
+            )
+        }
+    }
+
+    // <li class=""><span class="ph1">1</span> <a
+    //     href="./detail.html?film_id=" target="_blank"
+    //     title="美丽人生">美丽人生<span style="float: right;margin-right: 10px;">10-10</span></a>
+    //     <div class="tips">
+    //         <div class="tipscont">
+    //             <img src="public/static/upload/filmPic/1476102109462.jpg"
+    //                  style="border:1px solid #ddd;padding: 4px;background: white;"
+    //                  width="200px" height="288px" alt="美丽人生">
+    //         </div>
+    //     </div>
+    // </li>
+    function showTopAnimation(topAnimation) {
+        let index = 0;
+        for (const anime of topAnimation) {
+            $("#topAnimation").append(
+                $("<li>").append(
+                    $('<span class="ph1">').text(++index)
+                ).append(
+                    $('<a>').attr("href","detail.html?film_id="+anime.id).text(anime.name).append(
+                        $("<span>").css("float","right").css("margin-right","10px")
+                            .text(anime.updateTime.substring(5,10))
+                    )
+                ).append(
+                    $('<div class="tips">').append(
+                        $('<div class="tipscont">').append(
+                            $('<img style="border: 1px solid #ddd;padding: 4px;background: white;width: 200px;height: 288px">')
+                                .attr("href",BASE_IMG_URL+anime.image)
                         )
                     )
                 )
